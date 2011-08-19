@@ -1,0 +1,22 @@
+Mobile JWiki 0.4
+Copyright 2011 Bob Wadholm 
+Dual licensed under the MIT or GPL Version 2 licenses. 
+http://www.bob.wadholm.com/licenses.shtml
+
+This script allows an entire MediaWiki wiki to be transformed into a mobile Website 
+using only JQuery, JQuery Mobile & PHP (and a little HTML5 magic). With several
+small changes, you could easily make it work as a mobilizer of just about any 
+Website (even one not on your domain). 
+
+Put these two scripts on your site root, and change the $jWikiHome variable 
+to the domain of the wiki, the $jWikiHomePage variable to the home page of 
+the mobile site, and the $mobileHome variable to the path to this script. 
+That's it (we hope).
+
+By default, caching on all pages is enabled via the cache.manifest file. 
+This means that if the browser supports this feature of HTML5 (IE doesn't),
+every page that users have visited online will still be completely
+accessible when they are offline. This effectively turns your MediaWiki
+into an online/offline mobile Web app. You'll see in the signup.php file
+that this app was developed for Door43.org. You should check them out,
+they're pretty cool (free and open discipleship resources for everybody).
