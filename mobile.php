@@ -22,7 +22,7 @@ if ($linkValue == ""){
 $urlWithParams = $_SERVER['SCRIPT_URI'] . '?' . $_SERVER['QUERY_STRING'];
 ?>
 <!DOCTYPE html> 
-<html manifest="/cache.manifest"> 
+<html manifest="/cache.manifest">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <title>Door43</title> 
@@ -79,8 +79,11 @@ $(document).bind("mobileinit", function(){
 				$anchorContents = str_replace('href="#', 'rel="external" href="' . $urlWithParams . '#',$absoluteContents);
 				$anchorContentsJS = str_replace("document.location='#", "document.location.replace='" . $urlWithParams . "#", $anchorContents);
 				
+				// Display fancy JQuery Mobile lists 
+				$mobileLists = str_replace('<ul>', '<ul data-role="listview" data-inset="true">', $anchorContentsJS);
+				
 				// Display all pages (for browsers without JavaScript
-				$displayContents = str_replace('display:none;','',$anchorContentsJS);
+				$displayContents = str_replace('display:none;','',$mobileLists);
 				
 				// Replace all relative URLs for images, scripts, and styles
 				$newContents = str_replace('src="/', 'src="' . $jWikiHome . '/',$displayContents);
