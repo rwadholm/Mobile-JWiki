@@ -11,7 +11,7 @@ Website (even one not on your domain).
 Put these two scripts on your site root, and change the $jWikiHome variable 
 to the domain of the wiki, the $jWikiHomePage variable to the home page of 
 the mobile site, and the $mobileHome variable to the path to this script. 
-Then put the following line in your .htaccess file in the same folder:
+Then put the following two lines in your .htaccess file in the same folder:
 
 AddType text/cache-manifest .manifest
 ExpiresByType text/cache-manifest "access plus 0 seconds"
