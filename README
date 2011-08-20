@@ -14,6 +14,7 @@ the mobile site, and the $mobileHome variable to the path to this script.
 Then put the following line in your .htaccess file in the same folder:
 
 AddType text/cache-manifest .manifest
+ExpiresByType text/cache-manifest "access plus 0 seconds"
 
 That's it (we hope).
 
