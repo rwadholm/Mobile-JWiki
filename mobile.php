@@ -81,9 +81,10 @@ $(document).bind("mobileinit", function(){
 				
 				// Display fancy JQuery Mobile lists 
 				$mobileLists = str_replace('<ul>', '<ul data-role="listview" data-inset="true">', $anchorContentsJS);
+				$mobileorderedLists = str_replace('<ol>', '<ol data-role="listview" data-inset="true">', $mobileLists);
 				
 				// Display all pages (for browsers without JavaScript
-				$displayContents = str_replace('display:none;','',$mobileLists);
+				$displayContents = str_replace('display:none;','',$mobileorderedLists);
 				
 				// Replace all relative URLs for images, scripts, and styles
 				$newContents = str_replace('src="/', 'src="' . $jWikiHome . '/',$displayContents);
