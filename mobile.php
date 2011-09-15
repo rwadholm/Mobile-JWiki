@@ -1,4 +1,4 @@
-<?php /* Mobile JWiki 0.4
+<?php /* Mobile JWiki 0.4.1
 Copyright 2011 Bob Wadholm 
 Dual licensed under the MIT or GPL Version 2 licenses. 
 http://www.bob.wadholm.com/licenses.shtml
@@ -11,9 +11,10 @@ the path to this script. That's it.
 */
 $jWikiHome = "http://en.door43.org"; // Change this to the domain of the site you want to feature
 $jWikiHomePage = $jWikiHome . "/wiki/Mobile_Home"; // Change this to the home page of the mobile site
-$mobileHome = "/mobile.php"; // Change this to whatever you rename this file to (like /index.php or /m.php) 
+$mobileHome = "/door43/index.php"; // Change this to whatever you rename this file to (like /index.php or /m.php) 
 
 // Everything below here can stay
+// <html manifest="/door43/cache.manifest">
 $linkValue = ($_GET["linkValue"]) . "";
 if ($linkValue == ""){
 	$linkValue = $jWikiHomePage;	
@@ -22,7 +23,7 @@ if ($linkValue == ""){
 $urlWithParams = $_SERVER['SCRIPT_URI'] . '?' . $_SERVER['QUERY_STRING'];
 ?>
 <!DOCTYPE html> 
-<html manifest="/cache.manifest">
+<html manifest="/door43/cache.manifest">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <title>Door43</title> 
@@ -32,6 +33,8 @@ $urlWithParams = $_SERVER['SCRIPT_URI'] . '?' . $_SERVER['QUERY_STRING'];
 .ui-body-c { background: #fff; }
 .ui-btn-text { color: #fff; text-decoration:none; }
 a.ui-btn-hover-a { color: #fff; text-decoration:none; }
+img { max-width: 100%; height: auto;}
+.videoframe, .youtube-player { max-width: 100%; height: auto;}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
 <script type='text/javascript' src='<?php echo $jWikiHome; ?>/w/extensions/JQueryTabs/js/jquery.flydom-3.1.1.min.js'></script> 
@@ -82,7 +85,7 @@ $(document).bind("mobileinit", function(){
 				// Display fancy JQuery Mobile lists 
 				$mobileLists = str_replace('<ul>', '<ul data-role="listview" data-inset="true">', $anchorContentsJS);
 				$mobileorderedLists = str_replace('<ol>', '<ol data-role="listview" data-inset="true">', $mobileLists);
-				
+	
 				// Display all pages (for browsers without JavaScript
 				$displayContents = str_replace('display:none;','',$mobileorderedLists);
 				
@@ -101,8 +104,20 @@ $(document).bind("mobileinit", function(){
             
         </div>
         <div data-role="footer">
-            <h4><!--<a href="http://www.mediawiki.org/"><img src="http://en.door43.org/w/skins/common/images/poweredby_mediawiki_88x31.png" /></a> --><a rel="external" href="<?php echo $mobileHome . "?linkValue=" . $jWikiHome; ?>/copyrights"><img src="http://en.door43.org/w/skins/common/images/cc-by-sa-88x31.png" /></a></h4>
+            <h4><a rel="external" href="<?php echo $mobileHome . "?linkValue=" . $jWikiHome; ?>/copyrights"><img src="http://door43.org/media/images/by-sa_80x15.png" alt="by-sa" /></a><br /><a rel="external" href="<?php echo $linkValue; ?>"><img src="http://door43.org/media/images/d43_80x15.png" alt="door43.org" /></a></h4>
         </div>
     </div>
+<!-- Piwik --> 
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://www.dsmedia.org/piwik/" : "http://www.dsmedia.org/piwik/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://www.dsmedia.org/piwik/piwik.php?idsite=10" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
 </body>
 </html>
