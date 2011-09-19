@@ -74,23 +74,24 @@ $(document).bind("mobileinit", function(){
 			} else {
 				
 				// Replace all relative URLs
-				$relativeContents = str_replace('href="/', 'rel="external" href="' . $mobileHome . '?linkValue=' . $jWikiHome . '/',$getContents);
+				$relativeContents = str_replace('href="/', 'rel="external" href="' . $mobileHome . '?linkValue=' . $jWikiHome . '/', $getContents);
 				// Replace all absolute URLs
-				$absoluteContents = str_replace('href="' . $jWikiHome, 'rel="external" href="' . $mobileHome . '?linkValue=' . $jWikiHome,$relativeContents);
+				$absoluteContents = str_replace('href="' . $jWikiHome, 'rel="external" href="' . $mobileHome . '?linkValue=' . $jWikiHome, $relativeContents);
 				
 				// Replace all anchor links
-				$anchorContents = str_replace('href="#', 'rel="external" href="' . $urlWithParams . '#',$absoluteContents);
-				$anchorContentsJS = str_replace("document.location='#", "document.location.replace='" . $urlWithParams . "#", $anchorContents);
+				$anchorContents = str_replace('href="#', 'rel="external" href="' . $urlWithParams . '#', $absoluteContents);
+				$anchorContentsSQ = str_replace("href='#", "rel='external' href='" . $urlWithParams . "#", $anchorContents);
+				$anchorContentsJS = str_replace("document.location='#", "document.location.replace='" . $urlWithParams . "#", $anchorContentsSQ);
 				
 				// Display fancy JQuery Mobile lists 
 				$mobileLists = str_replace('<ul>', '<ul data-role="listview" data-inset="true">', $anchorContentsJS);
 				$mobileorderedLists = str_replace('<ol>', '<ol data-role="listview" data-inset="true">', $mobileLists);
 	
 				// Display all pages (for browsers without JavaScript
-				$displayContents = str_replace('display:none;','',$mobileorderedLists);
+				$displayContents = str_replace('display:none;','', $mobileorderedLists);
 				
 				// Replace all relative URLs for images, scripts, and styles
-				$newContents = str_replace('src="/', 'src="' . $jWikiHome . '/',$displayContents);
+				$newContents = str_replace('src="/', 'src="' . $jWikiHome . '/', $displayContents);
 				
 				echo $newContents;
 			};		
